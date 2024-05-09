@@ -10,8 +10,8 @@ const notify = () =>
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
-    const form = evt.target;
-    const searchTerm: string = form.elements.searchImage.value;
+    const form = evt.target as HTMLFormElement;
+    const searchTerm: string = (form.elements.namedItem("searchImage") as HTMLInputElement | null)?.value || "";
     if (searchTerm.trim() === "") {
       notify();
       return;

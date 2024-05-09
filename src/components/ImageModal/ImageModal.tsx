@@ -26,7 +26,7 @@ const ImageModal: React.FC<ImageModalProps> = ({
   selectedImage,
   closeModal,
 }) => {
-  const handleModalClick = (event: MouseEvent<HTMLButtonElement>): void => {
+  const handleModalClick = (event: MouseEvent<HTMLDivElement>): void => {
     if (event.target === event.currentTarget) {
       closeModal();
     }
@@ -36,10 +36,10 @@ const ImageModal: React.FC<ImageModalProps> = ({
     <Modal
       isOpen={!!selectedImage}
       onRequestClose={closeModal}
-      onClick={handleModalClick}
+      
       style={customStyles}
     >
-      <div>
+      <div onClick={handleModalClick}>
         <img src={selectedImage} alt="Selected" />
       </div>
     </Modal>

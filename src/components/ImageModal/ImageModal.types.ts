@@ -1,4 +1,4 @@
 export interface ImageModalProps {
-    selectedImage: string | null;
+    selectedImage: string | undefined;
     closeModal: () => void;
   };
