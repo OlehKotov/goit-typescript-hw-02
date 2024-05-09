@@ -39,7 +39,7 @@ function App() {
   };
 
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!query) return;
     async function fetchImagesByQuery() {
       try {
