@@ -16,7 +16,7 @@ function App() {
   const [error, setError] = useState<boolean>(false);
   const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string>("");
 
   const onSearch = (searchTerm: string): void => {
     setQuery(searchTerm);
@@ -35,7 +35,7 @@ function App() {
   };
 
   const closeModal = (): void => {
-    setSelectedImage(null);
+    setSelectedImage("");
   };
 
 
