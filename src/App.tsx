@@ -7,43 +7,45 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import { requestImagesByQuery } from "./services/images-api";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import { Image } from "./services/images-api.types";
+
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState<Image[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const onSearch = (searchTerm) => {
+  const onSearch = (searchTerm: string): void => {
     setQuery(searchTerm);
     setPage(1);
     setImages([]); 
+    
   };
 
-  const onAddPage = () => {
-    setPage((prevPage) => prevPage + 1);
+  const onAddPage = (): void => {
+    setPage((prevPage: number) => prevPage + 1);
   };
 
 
-  const openModal = (imageUrl) => {
+  const openModal = (imageUrl: string): void => {
     setSelectedImage(imageUrl);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setSelectedImage(null);
   };
-
 
 
   useEffect(() => {
     if (!query) return;
     async function fetchImagesByQuery() {
       try {
-        setLoading(true);
-        const data = await requestImagesByQuery(query, page);
-        setImages((prevImages) => [...prevImages, ...data]);
+        setLoading(true);   
+        const data: Image[] = await requestImagesByQuery(query, page);
+        setImages((prevImages: Image[]) => [...prevImages, ...data]);
       } catch (error) {
         setError(true);
       } finally {
@@ -52,13 +54,11 @@ function App() {
     }
 
     fetchImagesByQuery();
-
   }, [query, page]);
 
   return (
     <div>
       <SearchBar onSearch={onSearch} />
-      
       {error && <ErrorMessage />}
       <ImageGallery images={images} openModal={openModal}/>
       {loading && <Loader />}

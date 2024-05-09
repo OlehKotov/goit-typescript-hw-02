@@ -1,8 +1,12 @@
 import css from './LoadMoreBtn.module.css'
+import { LoadMoreBtnProps } from './LoadMoreBtn.types';
 
 
-const LoadMoreBtn = ({ onAddPage }) => {
-  const handleClick = () => {
+
+
+const LoadMoreBtn: React.FC<LoadMoreBtnProps> = ({ onAddPage }) => {
+  
+  const handleClick = (): void => {
     onAddPage();
   };
 

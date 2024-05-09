@@ -1,13 +1,17 @@
 import toast, { Toaster } from "react-hot-toast";
-import css from './SearchBar.module.css'
+import css from "./SearchBar.module.css";
+import { FormEvent } from "react";
+import { SearchBarProps } from "./SearchBar.types";
 const notify = () =>
   toast.error("Notification: Please Enter Text for Image Search");
 
-const SearchBar = ({ onSearch }) => {
-  const handleSubmit = (evt) => {
+
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
     const form = evt.target;
-    const searchTerm = form.elements.searchImage.value;
+    const searchTerm: string = form.elements.searchImage.value;
     if (searchTerm.trim() === "") {
       notify();
       return;
