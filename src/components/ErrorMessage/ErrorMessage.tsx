@@ -1,12 +1,9 @@
-import { ErrorMessageProps } from "./ErrorMessage.types"
+import { ErrorMessageProps } from "./ErrorMessage.types";
 
+const ErrorMessage: React.FC<ErrorMessageProps> = ({
+  message = "Something went wrong, please reload the page 🫤",
+}) => {
+  return <p>{message}</p>;
+};
 
-
-
-const ErrorMessage = ({message = "Something went wrong, please reload the page 🫤"}): string => {
-  return (
-    <p>{message}</p>
-  )
-}
-
-export default ErrorMessage
+export default ErrorMessage;
